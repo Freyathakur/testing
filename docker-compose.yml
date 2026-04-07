@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - APP_ENV=development
+      - DB_PATH=/app/data/db.json
+    volumes:
+      # Mount that assumes specific directory structure
+      - ./app:/app/app
+      - ./data:/app/data
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    # Missing healthcheck configuration
+    # No restart policy defined
+    
+  # This service is defined but not used in CI
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: task_manager
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # API doesn't actually use this database - it's in-memory only
+
+volumes:
+  pgdata:

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "task-manager-api"
+version = "1.0.0"
+description = "FastAPI-based Task Management System"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Development Team", email = "dev@example.com"}
+]
+
+dependencies = [
+    "fastapi==0.104.1",
+    "uvicorn==0.24.0",
+    "pydantic==2.5.0",
+    "requests==2.31.0",
+    # Missing python-dotenv here too - it's imported in main.py
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.3",
+    "pytest-cov==4.1.0",
+    "black==23.12.0",
+    "flake8==6.1.0",
+    # Missing typing-extensions which might be needed
+]
+
+[tool.black]
+target-version = ['py310']
+line-length = 88
+# Conflict with flake8's 79 character limit
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --strict-markers"
+
+[tool.coverage.run]
+source = ["app"]

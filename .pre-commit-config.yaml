@@ -1,0 +1,30 @@
+# Pre-commit hooks configuration
+# Note: This file has issues that might not catch all problems
+
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.12.0
+    hooks:
+      - id: black
+        language_version: python3.10
+        # Conflict: black uses 88 char lines, flake8 uses 79
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=79']
+        # This will conflict with black's formatting
+
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v3.12.0
+    hooks:
+      - id: reorder-python-imports
+        args: ['--py310-plus']
+        # Unused imports may be caught here but not in CI
+
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v2.2.2
+    hooks:
+      - id: pycln
+        # This removes unused imports but isn't run in CI

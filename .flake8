@@ -1,0 +1,22 @@
+[flake8]
+# Flake8 configuration
+max-line-length = 79
+exclude = 
+    .git,
+    __pycache__,
+    venv,
+    env,
+    build,
+    dist,
+    *.egg-info
+
+# Note: This config doesn't actually exclude problematic checks
+# The main.py file has line 82 that's too long but isn't caught
+ignore = E501  # Ignore line too long - but we should enforce it
+
+per-file-ignores =
+    __init__.py:F401
+    # tests/*:D100,D101,D102,D103  # This line has a comment with wrong format
+
+# The configuration enables complexity check but doesn't set proper limits
+max-complexity = 10
