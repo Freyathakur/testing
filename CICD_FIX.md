@@ -1,14 +1,14 @@
 # Agentic CI/CD Copilot — Recommended Fix
 
-Update pytest.ini to set log_file to a writable path ('./pytest.log') instead of '/var/log/pytest.log'.
+Updates pytest.ini to set log_file to ./pytest.log instead of /var/log/pytest.log.
 
 ## Suggested Diff (apply manually if needed)
 
 ```diff
---- a/pytest.ini
-+++ b/pytest.ini
+--- a/Freyathakur/testing/pytest.ini
++++ b/Freyathakur/testing/pytest.ini
 @@ ... @@
--# This path doesn't exist - will cause warnings
+ # This path doesn't exist - will cause warnings
 -log_file = /var/log/pytest.log
 +log_file = ./pytest.log
  log_file_level = DEBUG
