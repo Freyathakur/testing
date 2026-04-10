@@ -1,5 +1,5 @@
 # Task Manager API
-.
+
 A FastAPI-based task management service with user support and analytics capabilities.
 
 ## Features
