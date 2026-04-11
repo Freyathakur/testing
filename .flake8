@@ -10,9 +10,10 @@ exclude =
     dist,
     *.egg-info
 
+
 # Note: This config doesn't actually exclude problematic checks
 # The main.py file has line 82 that's too long but isn't caught
-ignore = E501   Ignore line too long - but we should enforce it
+ignore = E501
 
 per-file-ignores =
     __init__.py:F401
